@@ -65,6 +65,19 @@ export const updateTravel = async (req: Request, res: Response) => {
   }
 };
 
+export const getSpaceships = async (req: Request, res: Response): Promise<Response> => {
+  // console.log("REQ in api", req);
+  try {
+    const response: QueryResult = await pool.query(
+      "SELECT * FROM spaceships;"
+    );
+    // console.log("REQ in api", response.rows);
+    return res.status(200).json(response.rows);
+  } catch (err) {
+    return res.status(500).json({ error: err });
+  }
+};
+
 export const addSpaceship = async (req: Request, res: Response) => {
   const { id, name, modal, city, planet, maxseat, status } = req.body;
   try {
@@ -98,19 +111,7 @@ export const updateSpaceshipStatus = async (req: Request, res: Response) => {
   }
 };
 
-// export const updateSpaceshipLocation = async (req: Request, res: Response) => {
-//   const { spaceshipId, newCity, newPlanet } = req.body;
-//   try {
-//     const response = await pool.query('UPDATE SPACESHIPS SET city=($2), planet=($3) WHERE ID=($1)', [
-//       spaceshipId,
-//       newCity,
-//       newPlanet
-//     ]);
-//     return res.json(`Spaceship location update ${newPlanet} successfully`);
-//   } catch (err) {
-//     return res.status(500).json({ error: err });
-//   }
-// };
+
 
 
 export const removeSpaceship = async (req: Request, res: Response) => {
@@ -120,6 +121,21 @@ export const removeSpaceship = async (req: Request, res: Response) => {
       id
     ]);
     return res.json('Spaceship removed successfully');
+  } catch (err) {
+    return res.status(500).json({ error: err });
+  }
+};
+
+export const addCustomers = async (req: Request, res: Response) => {
+  const { user_id, email, name, capacity, docked_ships } = req.body;
+  try {
+    const response = await pool.query('INSERT INTO LOCATIONS VALUES($1,$2,$3,$4, $5)', [
+
+      capacity,
+      docked_ships,
+
+    ]);
+    return res.json('Location added successfully');
   } catch (err) {
     return res.status(500).json({ error: err });
   }

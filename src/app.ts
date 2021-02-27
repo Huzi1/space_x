@@ -3,6 +3,7 @@ import routes from "./routes";
 import bodyParser, { json } from 'body-parser';
 import path from 'path';
 
+
 const app = express();
 const port = process.env.PORT || 5000;
 let env = process.env["NODE_ENV"];
@@ -30,7 +31,7 @@ app.post('/api/world', (req: { body: { post: any; }; }, res: { send: (arg0: stri
 
 if (process.env.NODE_ENV === 'production') {
 
-    
+
     // Serve any static files
     app.use(express.static(path.join(__dirname, 'client/build')));
 

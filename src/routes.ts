@@ -7,12 +7,30 @@ import {
     removeSpaceship,
     removeLocation,
     updateTravel,
+    getSpaceships
 } from "./controllers";
+import cors from 'cors';
 import { Request, Response } from "express";
 // jgjygjy
 const router = Router();
 
-
+//options for cors midddleware
+const options: cors.CorsOptions = {
+    allowedHeaders: [
+        'Origin',
+        'X-Requested-With',
+        'Content-Type',
+        'Accept',
+        'X-Access-Token',
+        'Access-Control-Allow-Origin',
+    ],
+    credentials: true,
+    methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
+    origin: 'http://localhost:3000',
+    preflightContinue: false,
+};
+//use cors middleware
+router.use(cors(options));
 interface Spaceship {
     id: number,
     name: string,
@@ -33,6 +51,8 @@ router.post('/api/spaceship', (req: { body: Spaceship }, res: { send: (arg0: str
 
 router.put('/api/travel', updateTravel);
 router.get('/api/locations', getLocations);
+
+router.get('/api/getSpaceships', getSpaceships);
 
 router.post('/api/addlocation', addLocation);
 
