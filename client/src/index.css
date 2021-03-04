@@ -13,9 +13,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-html,#app, .App,#root, #root>div {
+/* html,#app, .App,#root, #root>div {
   height: 100%;
   margin:0;
+} */
+html, body, #app, #root, .App, #app > div {
+  height: 100% ;
+  overflow: auto;
+  width: 100%;
 }
 .special_modal .modal-content{
   background-color:#f7f7f7;

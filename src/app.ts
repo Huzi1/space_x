@@ -2,13 +2,13 @@ import express from 'express';
 import routes from "./routes";
 import bodyParser, { json } from 'body-parser';
 import path from 'path';
-
+import cors from "cors";
 
 const app = express();
 const port = process.env.PORT || 5000;
 let env = process.env["NODE_ENV"];
 
-
+app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(routes)

@@ -80,6 +80,7 @@ exports.getSpaceships = (req, res) => __awaiter(this, void 0, void 0, function* 
 });
 exports.addSpaceship = (req, res) => __awaiter(this, void 0, void 0, function* () {
     const { id, name, modal, city, planet, maxseat, status } = req.body;
+    console.log("IN ADD spaceships", req.body);
     try {
         const response = yield db_1.pool.query('INSERT INTO Spaceships VALUES($1,$2,$3,$4, $5, $6, $7)', [
             id,
@@ -111,6 +112,7 @@ exports.updateSpaceshipStatus = (req, res) => __awaiter(this, void 0, void 0, fu
 });
 exports.removeSpaceship = (req, res) => __awaiter(this, void 0, void 0, function* () {
     const { id } = req.body;
+    console.log("in delete api req.body", req.body);
     try {
         const response = yield db_1.pool.query('DELETE FROM SPACESHIPS WHERE ID=($1)', [
             id

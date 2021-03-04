@@ -80,6 +80,7 @@ export const getSpaceships = async (req: Request, res: Response): Promise<Respon
 
 export const addSpaceship = async (req: Request, res: Response) => {
   const { id, name, modal, city, planet, maxseat, status } = req.body;
+  console.log("IN ADD spaceships", req.body)
   try {
     const response = await pool.query('INSERT INTO Spaceships VALUES($1,$2,$3,$4, $5, $6, $7)', [
       id,
@@ -116,6 +117,7 @@ export const updateSpaceshipStatus = async (req: Request, res: Response) => {
 
 export const removeSpaceship = async (req: Request, res: Response) => {
   const { id } = req.body;
+  console.log("in delete api req.body", req.body)
   try {
     const response = await pool.query('DELETE FROM SPACESHIPS WHERE ID=($1)', [
       id
